@@ -1,14 +1,13 @@
 
-.PHONY: run
-run:
+.PHONY: up
+up:
 	vagrant up
 	poetry run ansible-playbook -i inventory/vagrant.py minikube.yml
 
 .PHONY: re-run
 re-run:
 	${MAKE} clean
-	${MAKE} run
-
+	${MAKE} up
 
 .PHONY: halt
 halt:

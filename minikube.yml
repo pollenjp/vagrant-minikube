@@ -68,11 +68,10 @@
 
     - name: install requirements
       apt:
-        pkg: "{{ item }}"
+        pkg:
+          - apt-transport-https
+          - gnupg2
         update_cache: yes
-      with_items:
-        - apt-transport-https
-        - gnupg2
 
     ######################
     # Install kubernetes #
@@ -97,13 +96,12 @@
         filename: kubernetes
     - name: install kubernetes tools
       apt:
-        pkg: "{{ item }}"
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+          - kubernetes-cni
         update_cache: yes
-      with_items:
-        - kubelet
-        - kubeadm
-        - kubectl
-        - kubernetes-cni
 
     ####################
     # Install Minikube #
